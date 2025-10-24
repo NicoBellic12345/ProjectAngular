@@ -1,0 +1,13 @@
+<h2>Detail / Demo Component</h2>
+<p [class.highlight]="highlight">This paragraph will be highlighted when you toggle the switch.</p>
+
+<label>
+  Highlight:
+  <input type="checkbox" [(ngModel)]="highlight" />
+</label>
+
+<p><a routerLink="/">← Back</a></p>
+
+<style>
+  .highlight { background: yellow; }
+</style>

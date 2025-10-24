@@ -1,0 +1,18 @@
+<h2>Прогноз для: {{ location?.name || '—' }}</h2>
+
+<p *ngIf="loading">Загружаем прогноз...</p>
+<p *ngIf="error" style="color: crimson">{{ error }}</p>
+
+<button (click)="toggleDetails()">Toggle details</button>
+
+<div *ngIf="forecast">
+  <p>Широта: {{ forecast.latitude }}, Долгота: {{ forecast.longitude }}</p>
+
+  <ul *ngIf="showDetails">
+    <li *ngFor="let i of forecast.hourly.time.slice(0,5); let idx = index">
+      {{ forecast.hourly.time[idx] }} — {{ forecast.hourly.temperature_2m[idx] }}°C
+    </li>
+  </ul>
+</div>
+
+<p><a routerLink="/">← Назад</a></p>

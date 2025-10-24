@@ -1,0 +1,29 @@
+<h2>Поиск города (live search)</h2>
+
+<label>
+  Город (two-way binding): 
+  <input [(ngModel)]="cityName" placeholder="Например, Almaty" />
+</label>
+
+<div style="margin-top: 1rem;">
+  <input 
+    [attr.placeholder]="'Начните вводить город...'" 
+    (input)="onCityInput($event.target.value)" 
+    title="Type to search" />
+  <button (click)="onCityInput(cityName)">Search by name</button>
+</div>
+
+<p *ngIf="loading">Загрузка...</p>
+
+<ul>
+  <li *ngFor="let loc of (locations$ | async)">
+    <button [disabled]="!loc" (click)="selectLocation(loc)">
+      {{ loc.name }}, {{ loc.country }} ({{ loc.latitude }}, {{ loc.longitude }})
+    </button>
+  </li>
+</ul>
+
+<p *ngIf="error" style="color: crimson;">Ошибка: {{ error }}</p>
+
+<hr />
+<p>Пример интерполяции: текущее имя в поле — <strong>{{ cityName }}</strong></p>
